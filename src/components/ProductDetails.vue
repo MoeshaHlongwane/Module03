@@ -1,5 +1,4 @@
 <template>
-  <Cart />
   <div class="container mt-4">
     <!-- Back to Products Button -->
     <button class="btn btn-secondary mb-4" @click="goBackToProducts">
@@ -94,12 +93,8 @@
 </template>
 
 <script>
-import Cart from "../components/Cart.vue";
 
 export default {
-  components: {
-    Cart,
-  },
   props: {
     product: {
       type: Object,
