@@ -3,24 +3,27 @@ import { pool } from "../config/config.js";
 
 const getCart = async (user_id) => {
   const [data] = await pool.query(
-    `SELECT c.cart_id, c.quantity, p.product_id, p.name, p.price, p.image_url 
-     FROM cart AS c 
-     INNER JOIN products AS p ON c.product_id = p.product_id 
+    `SELECT c.cart_id, c.quantity, c.size, p.product_id, p.name AS product_name, p.price, p.image_url
+     FROM cart AS c
+     JOIN products AS p ON c.product_id = p.product_id
      WHERE c.user_id = ?`,
     [user_id]
   );
   return data;
 };
 
-const addToCart = async (user_id, product_id, quantity) => {
+
+
+const addToCart = async (user_id, product_id, quantity, size) => {
   await pool.query(
-    `INSERT INTO cart (user_id, product_id, quantity) 
-     VALUES (?, ?, ?) 
-     ON DUPLICATE KEY UPDATE quantity = quantity + ?`,
-    [user_id, product_id, quantity, quantity]
+    `INSERT INTO cart (user_id, product_id, quantity, size) 
+     VALUES (?, ?, ?, ?) 
+     ON DUPLICATE KEY UPDATE quantity = ?, size = ?`,
+    [user_id, product_id, quantity, size, quantity, size]
   );
   return await getCart(user_id);
 };
+
 
 
 const deleteItem = async (cart_id) => {
@@ -50,5 +53,7 @@ const updateCartItem = async (cart_id, quantity, size) => {
       [quantity, size, cart_id]
     );
   };
+
+
 
 export { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem};

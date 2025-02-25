@@ -1,14 +1,9 @@
-import express from "express"
-import {getOrdersCon, insertOrderCon, deleteOrderCon, updateOrderCon, getOrderByIdCon} from "../controller/ordersCon.js"
-// import { getOrdersCon } from "../controller/ordersCon.js"
-
-const router = express.Router()
-
-router.get("/", getOrdersCon)
-router.get("/:order_id", getOrderByIdCon)
-router.post("/", insertOrderCon)
-router.delete("/:order_id", deleteOrderCon)
-router.put("/:order_id", updateOrderCon)
+import express from 'express';
+import { createOrderCon, getUserCheckoutDetailsCon } from '../Controller/ordersCon.js';
+const router = express.Router();
+router.post('/', createOrderCon);
+router.get('/:user_id', getUserCheckoutDetailsCon);
+export default router;
 
 
-export default router
+

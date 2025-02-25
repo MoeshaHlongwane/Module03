@@ -7,8 +7,8 @@ const getCartCon = async (req, res) => {
 };
 
 const addToCartCon = async (req, res) => {
-  const { user_id, product_id, quantity } = req.body;
-  res.json(await addToCart(user_id, product_id, quantity));
+  const { user_id, product_id, quantity,size } = req.body;
+  res.json(await addToCart(user_id, product_id, quantity, size));
 };
 
 const deleteItemCon = async (req, res) => {

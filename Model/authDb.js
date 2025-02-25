@@ -5,12 +5,26 @@ import bcrypt from "bcryptjs";
 
 const registerUser = async (name, email, password, phone, address) => {
     try {
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const query = "INSERT INTO users (name, email, password, phone, address) VALUES (?, ?, ?, ?,?)";
-        await pool.query(query, [name, email, hashedPassword, phone, address]);
-        return { success: true, message: "User registered successfully" };
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
+        // Insert user into the database
+        const query = `
+            INSERT INTO users (name, email, password, phone, address) 
+            VALUES (?, ?, ?, ?, ?);
+        `;
+        const [result] = await pool.query(query, [name, email, hashedPassword, phone, address]);
+        
+        // Get the newly inserted user_id
+        const user_id = result.insertId;
+        
+        return {
+            success: true,
+            user_id,  // Return user_id
+            message: "User registered successfully"
+        };
     } catch (error) {
-        return { success: false, error: "Database error" };
+        console.error(error);
+        return { success: false, error: error.message };
     }
 };
 
