@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-4">
-    <h1 class="text-center mb-4">Products</h1>
+    <h1 class="text-center mb-4">Our Winter Wear</h1>
     <!-- Filters Section -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div align="center" class="d-flex justify-content-between align-items-center mb-4">
       <!-- Category Dropdown -->
       <select v-model="selectedCategory" class="form-select w-auto" @change="filterProducts">
         <option value="All">All</option>
@@ -21,7 +21,8 @@
             <div class="card-body d-flex justify-content-between align-items-center">
               <div>
                 <h5 class="card-title">{{ product.product_name }}</h5>
-                <p class="card-text">R{{ product.price }}</p>
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-price">R{{ product.price }}</p>
               </div>
               <div class="d-flex mt-auto">
                 <i
@@ -39,6 +40,16 @@
       </div>
     </div>
   </div>
+  <footer class="footer text-center text-white">
+      <div class="container">
+        <p>&copy; 2025 Thrifted Winter Coats | 123 Winter Lane, Cape Town</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </footer>
 </template>
 <script>
 import { mapState } from "vuex";
@@ -99,6 +110,28 @@ export default {
 };
 </script>
 <style scoped>
+.footer {
+  background: black;
+  padding: 20px;
+  color:black
+}
+.footer p {
+  color: var(--text-light);
+}
+.social-links a {
+  color: var(--text-light);
+  font-size: 20px;
+  margin: 0 10px;
+}
+.container{
+  max-width: 1300px;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
 .card-img-top {
   width: 400px;
   height: 600px;
@@ -116,13 +149,22 @@ export default {
   transition: color 0.3s;
 }
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
   transition: box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.7s ease, transform 0.1s ease;
+  
 }
 .card:hover {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+}
+.card-img-top {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
 }
 .card-body {
   display: flex;
@@ -132,10 +174,26 @@ export default {
 .card-title {
   font-size: 1.1rem;
   font-weight: bold;
+  display:flex;
+
+}
+.card-price{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+
 }
 .card-text {
   color: #333;
   font-size: 1rem;
+  /* font-weight: bold; */
+  /* color: #333; */
+  cursor: pointer;
+  transition: color 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cart-text:hover {
+  color: #007bff;
 }
 .g-4 {
   --bs-gutter-y: 1.5rem;

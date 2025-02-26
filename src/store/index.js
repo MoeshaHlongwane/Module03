@@ -48,10 +48,10 @@ export default createStore({
         const { All_Products } = await response.json();
         const updatedProducts = All_Products.map((product) => {
           let baseUrl = "https://raw.githubusercontent.com/awonkenkibi/images/main/";
-          if (product.category_name === "Women") {
-            baseUrl += "WomenProducts/";
-          } else if (product.category_name === "Men") {
+          if (product.category_name === "Men") {
             baseUrl += "MenProducts/";
+          } else if (product.category_name === "Women") {
+            baseUrl += "WomenProducts/";
           } else if (product.category_name === "Kids") {
             baseUrl += "KidsProducts/";
           } else {

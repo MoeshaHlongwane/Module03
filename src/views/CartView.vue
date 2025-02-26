@@ -1,5 +1,4 @@
 <template>
-  
   <div v-if="cartItems.length > 0" class="cart-container">
     <div class="cart-header">
       <div class="user-name">Hello, Guest!</div>
@@ -34,13 +33,21 @@
     <div class="checkout-container">
       <router-link to="/checkout" class="checkout-btn">Proceed to Checkout</router-link>
     </div>
-    
   </div>
   <div v-else class="empty-cart">
     <p>Your cart is empty.</p>
   </div>
+  <footer class="footer text-center text-white">
+      <div class="container">
+        <p>&copy; 2025 Thrifted Winter Coats | 123 Winter Lane, Cape Town</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </footer>
 </template>
-
 
 <script>
 export default {
@@ -91,25 +98,31 @@ export default {
 </script>
 
 <style scoped>
+/* Main Container Styling */
 .cart-container {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #fafafa;
+  background-color: #f9f9f9;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   max-width: 1200px;
   margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Header Styling */
 .cart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.cart-summary {
+  font-size: 18px;
 }
 
 .cart-items-list {
@@ -126,19 +139,33 @@ export default {
   transform: translateY(-20px);
 }
 
+/* Cart Item Styling */
 .cart-item {
   display: flex;
   justify-content: space-between;
   background-color: #fff;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item-details {
   display: flex;
   flex: 1;
+}
+.footer {
+  background: black;
+  padding: 20px;
+  color:black
+}
+.footer p {
+  color: var(--text-light);
+}
+.social-links a {
+  color: var(--text-light);
+  font-size: 20px;
+  margin: 0 10px;
 }
 
 .cart-item-image {
@@ -164,7 +191,7 @@ export default {
 
 .item-description {
   font-size: 14px;
-  color: #777;
+  color: #7f8c8d;
   margin-bottom: 10px;
 }
 
@@ -175,25 +202,26 @@ export default {
 }
 
 .item-quantity {
-  color: #555;
+  color: #34495e;
   font-size: 14px;
 }
 
+/* Action Buttons Styling */
 .item-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   justify-content: space-between;
   align-items: flex-end;
 }
 
 .action-button {
-  padding: 10px 15px;
+  padding: 12px 18px;
   font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, opacity 0.2s;
 }
 
 .remove {
@@ -212,25 +240,24 @@ export default {
 }
 
 .action-button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
-/* Container to center the checkout button */
+/* Checkout Button Container */
 .checkout-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .checkout-btn {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 16px 32px;
   background-color: #3498db;
   color: white;
   font-size: 18px;
   border-radius: 8px;
   text-decoration: none;
-  margin-top: 30px;
   text-align: center;
 }
 
@@ -238,10 +265,11 @@ export default {
   background-color: #2980b9;
 }
 
+/* Empty Cart Styling */
 .empty-cart {
   text-align: center;
   font-size: 18px;
-  color: #888;
+  color: #95a5a6;
+  margin-top: 50px;
 }
-
 </style>

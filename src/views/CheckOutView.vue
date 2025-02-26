@@ -35,7 +35,16 @@
     <button @click="placeOrder">Place Order</button>
   </div>
  </div>
-  
+ <footer class="footer text-center text-white">
+      <div class="container">
+        <p>&copy; 2025 Thrifted Winter Coats | 123 Winter Lane, Cape Town</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </footer>
 </template>
 <script>
 import axios from "axios";
@@ -102,7 +111,7 @@ export default {
             : this.shipping,
         });
         if (response.data.success) {
-          this.$router.push({ name: "Payment", params: { orderId: response.data.order_id } });
+          this.$router.push({ name: "payment", params: { orderId: response.data.order_id } });
         } else {
           alert("Failed to place order.");
         }

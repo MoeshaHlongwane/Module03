@@ -16,13 +16,13 @@
     <!-- Our Journey to Warmth and Style -->
      <div class="our-journey-Color">
       <section class="our-journey container d-flex align-items-center">
-      <img :src="journeyImage" class="journey-img" alt="Our Journey">
+        <video :src="journeyVideo" class="journey-video" autoplay loop muted></video>
+      <!-- <img :src="journeyImage" class="journey-img" alt="Our Journey"> -->
       <div class="journey-text">
         <h2>Our Journey to Warmth and Style</h2>
         <p>At Thrifted Warmth, we specialize in high-quality imported European winter coats with a strong emphasis on reusing and recycling. Our collection features a wide range of options for men, women, and kids, including puffer jackets and leather coats, all offered at affordable prices ranging from R100 to R600. With a commitment to sustainability and style, we aim to provide warmth while protecting the environment.</p>
         <router-link to="/about" class="btn btn-warning">Learn More</router-link>
       </div>
-      <img :src="journeyImage2" class="journey-img" alt="Our Journey">
     </section>
      </div>
    
@@ -81,7 +81,7 @@ export default {
       ],
       logo: require("../assets/Thrifted_Warmth_Promo.jpg"),
       journeyImage: require('../assets/journeyImg.jpg'),
-      journeyImage2: require('../assets/manWearingAcoat.jpg'),
+      journeyVideo: require('../assets/thrifted.mp4'),
       catalogues: [
         { name: "Women's Collection", subtitle:"Chic & Cozy", description: "Indulge in our women's selection that combines elegance with comfort. Whether you're looking for a trendy puffer jacket or a classic leather coat, we have the perfect choice to keep you stylish and snug.", image: require('../assets/Coat02.png') },
         { name: "Men's Collection", subtitle:" Stylish and Practical", description: "Sophisticated and warm, just for him.", image: require('../assets/Coat06.png')  },
@@ -118,7 +118,7 @@ export default {
 .hero {
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,7 +131,6 @@ export default {
   border-radius: 100%;
   animation: slideUp 1.5s ease-out;
 }
-
 .hero::before {
   content: '';
   position: absolute;
@@ -169,12 +168,6 @@ export default {
   animation: slideUp 1.5s ease-out;
 }
 
-/* Our Journey Section */
-.our-journey-Color{
-  transition: transform 0.3s;
-  background-color: #f9daaf;
-  
-}
 .journey-text {
     font-family: 'Playfair Display', serif; 
     text-align: center;
@@ -188,6 +181,12 @@ export default {
     margin-right: auto;
     animation: slideUp 1.5s ease-out;
     transition: transform 0.3s;
+}
+.journey-video {
+  width: 550px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .journey-text h2 {
@@ -227,6 +226,8 @@ export default {
   align-items: center;
   gap: 20px;
   padding: 50px 0;
+  transition: transform 0.3s;
+  flex-wrap: wrap;
 }
 .journey-img {
   width: 350px;
@@ -235,6 +236,14 @@ export default {
 }
 .journey-text {
   width: 50%;
+  text-align: center;
+  padding: 40px;
+  margin-top: 30px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  animation: slideUp 1.5s ease-out;
+  transition: transform 0.3s;
 }
 .journey-text h2 {
   color: var(--brown);
@@ -322,7 +331,7 @@ p {
 }
 
 /* Staggered Animation Delays */
-.hero {
+/* .hero {
   animation-delay: 0.5s;
 }
 .our-journey {
@@ -331,9 +340,27 @@ p {
 }
 .variety-section {
   animation-delay: 1.5s;
-}
+} */
 .footer {
   animation-delay: 2s;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .journey-text {
+    width: 100%;
+    padding: 20px;
+  }
+  .variety-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .category {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 </style>

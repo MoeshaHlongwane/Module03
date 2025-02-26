@@ -7,6 +7,7 @@ import AboutView from '@/views/AboutView.vue'
 import ProductDetails from '../components/ProductDetails.vue'
 import CartView from '../views/CartView.vue'
 import CheckOutView from '@/views/CheckOutView.vue'
+import payment from '@/components/payment.vue'
 
 const routes = [
   {
@@ -51,6 +52,11 @@ const routes = [
     props: (route) => ({
       product: JSON.parse(route.query.product),
     }),
+  },
+  {
+    path: "/payment",
+    name: "payment",
+    component: payment
   },
 ]
 

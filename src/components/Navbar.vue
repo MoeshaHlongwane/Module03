@@ -8,8 +8,7 @@
               @click="toggleMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Thrifted Warmth</a>
-
+      <router-link to="/about" class="navbar-brand"> Thrifted Warmth</router-link>
       <!-- Cart Icon at Corner -->
       <router-link to="/cart" class="cart-icon">
         <i class="fas fa-shopping-cart"></i>
