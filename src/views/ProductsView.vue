@@ -29,11 +29,6 @@
                   class="icon favorite-icon me-3"
                   @click.stop="toggleFavorite(product.product_id)"
                 ></i>
-                <i
-                  :class="isInCart(product.product_id) ? 'fas fa-shopping-cart text-success' : 'fas fa-shopping-cart text-muted'"
-                  class="icon cart-icon"
-                  @click.stop="toggleCart(product.product_id)"
-                ></i>
               </div>
             </div>
           </div>

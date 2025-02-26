@@ -85,6 +85,13 @@ background-color: #8B4513 !important; /* Brown color */
 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 padding: 1rem 2rem;
 transition: background-color 0.3s ease, transform 0.3s ease;
+position: fixed; /* Fixes the navbar at the top of the page */
+top: 0; /* Positions it at the top of the page */
+left: 0; /* Positions it at the left of the page */
+width: 100%; /* Ensures the navbar spans the full width of the page */
+padding: 10px 0; /* Adjust padding for your navbar */
+z-index: 1000; /* Ensures it stays above other content */
+ 
 }
 /* Navbar brand styles */
 .navbar-brand {

@@ -165,7 +165,7 @@ export default createStore({
       }
     },
 
-    async updateCartItem({ dispatch }, { cart_id, quantity, size }) {
+    async updateCartItem({ dispatch }, { cart_id, quantity }) {
       if (!cart_id) {
         console.error("cart_id is required but is missing");
         return;
@@ -176,7 +176,7 @@ export default createStore({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ cart_id, quantity, size }),
+          body: JSON.stringify({ cart_id, quantity }), // Only sending cart_id and quantity
         });
         if (!response.ok) throw new Error("Error updating cart item");
         await dispatch("fetchCart"); // Refresh cart after update
@@ -184,7 +184,7 @@ export default createStore({
         console.error("Error updating cart item:", error);
       }
     },
-
+    
     async removeFromCart({ dispatch }, cart_id) {
       try {
         const response = await fetch(`http://localhost:5050/cart/${cart_id}`, {
