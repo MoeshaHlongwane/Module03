@@ -22,7 +22,8 @@ app.use(express.json())//to allow data to be added to the Json()file
 //to access the env config file 
 
 
-app.use("/orders", ordersRouter)
+app.use("/api/checkout", ordersRouter)
+
 app.use("/order_items", orderItemRouter)
 app.use("/payments", paymentsRouter)
 app.use("/api/auth", authRouter);
@@ -35,6 +36,6 @@ app.use("/cart", cartRouter); // Cart routes
 const PORT = 5050
 app.listen(PORT, ()=>{
     console.log("http://localhost:"+PORT)
-    console.log("I am running")
+    console.log("I am running👍...")
 })
 

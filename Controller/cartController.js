@@ -1,5 +1,5 @@
 // controllers/cartController.js
-import { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem  } from "../model/cartModel.js";
+import { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem  } from "../Model/cartModel.js";
 
 const getCartCon = async (req, res) => {
   const user_id = req.params.user_id;
@@ -34,11 +34,24 @@ const getCartTotalCon = async (req, res) => {
     res.json({ total });
   };
 
-// Update Quantity and Size Controller
+// Update Quantity on the cartView
 const updateCartItemCon = async (req, res) => {
-    const { cart_id, quantity, size } = req.body;
-    await updateCartItem(cart_id, quantity, size);
-    res.json({ message: "Cart item updated successfully." });
-  };  
+  try {
+      let { cart_id, quantity } = req.body;
+      // Validate input
+      if (!cart_id || isNaN(cart_id)) {
+          return res.status(400).json({ error: "Invalid cart_id" });
+      }
+      if (!quantity || isNaN(quantity)) {
+          return res.status(400).json({ error: "Invalid quantity" });
+      }
+      await updateCartItem(cart_id, quantity);
+      res.json({ message: "Cart item updated successfully." });
+  } catch (error) {
+      console.error("Database Error:", error.message);
+      res.status(500).json({ error: error.message });
+  }
+};
+ 
 
 export { getCartCon, addToCartCon, deleteItemCon, dropCartCon, getCartTotalCon, updateCartItemCon };

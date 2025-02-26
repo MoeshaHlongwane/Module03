@@ -3,16 +3,14 @@ import { pool } from "../config/config.js";
 
 const getCart = async (user_id) => {
   const [data] = await pool.query(
-    `SELECT c.cart_id, c.quantity, c.size, p.product_id, p.name AS product_name, p.price, p.image_url
+    `SELECT c.cart_id, c.quantity, c.size, p.product_id, p.description, p.name AS product_name, p.price, p.image_url
      FROM cart AS c
-     JOIN products AS p ON c.product_id = p.product_id
+     INNER JOIN products AS p ON c.product_id = p.product_id
      WHERE c.user_id = ?`,
     [user_id]
   );
   return data;
 };
-
-
 
 const addToCart = async (user_id, product_id, quantity, size) => {
   await pool.query(
@@ -46,14 +44,15 @@ const getCartTotal = async (user_id) => {
     return data[0].total;
 };
 
-// Update Quantity and Size
-const updateCartItem = async (cart_id, quantity, size) => {
-    await pool.query(
-      `UPDATE cart SET quantity = ?, size = ? WHERE cart_id = ?`,
-      [quantity, size, cart_id]
-    );
-  };
-
-
+// Update Quantity
+async function updateCartItem(cart_id, quantity) {
+  const sql = `
+    UPDATE cart
+    SET quantity = ?
+    WHERE cart_id = ?
+  `;
+  const values = [quantity, cart_id]; // Prevent NULL size
+  return pool.query(sql, values);
+};
 
 export { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem};
