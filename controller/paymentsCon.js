@@ -1,3 +1,5 @@
+// Siyavuya's Code
+
 import { getPayments, getPaymentById, insertPayment, deletePayment,updatePayment } from "../model/paymentsDb.js";
 
 const getPaymentsCon = async (req, res) => {
