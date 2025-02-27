@@ -4,7 +4,7 @@ import {
   insertProduct,
   updateProduct,
   deleteProduct
-} from "../Model/productsModel.js";
+} from "../model/productsModel.js";
 
 const getAllProductsCon = async (req, res) => {
   try {

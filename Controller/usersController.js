@@ -4,7 +4,7 @@ import{
     insertedUser,
     deleteUser,
     updateUser
-} from "../Model/usersModel.js"
+} from "../model/usersModel.js"
 
 
 const getusersCon = async (req, res) => {

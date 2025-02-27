@@ -4,7 +4,7 @@ import {
     insertCategory,
     updateCategory,
     deleteCategory
-} from "../Model/productsCategoriesModel.js"
+} from "../model/productsCategoriesModel.js"
 
 const getCategoriesCon = async (req, res) => {
     res.json({

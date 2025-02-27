@@ -1,5 +1,5 @@
 // controllers/cartController.js
-import { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem  } from "../Model/cartModel.js";
+import { getCart, addToCart, deleteItem, dropCart, getCartTotal, updateCartItem  } from "../model/cartModel.js";
 
 const getCartCon = async (req, res) => {
   const user_id = req.params.user_id;

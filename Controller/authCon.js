@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { registerUser, getUserByEmail} from "../Model/authDb.js";
+import { registerUser, getUserByEmail} from "../model/authDb.js";
 import bcrypt from "bcryptjs";
 dotenv.config();
 // Register User
