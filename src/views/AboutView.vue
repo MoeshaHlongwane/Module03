@@ -20,7 +20,7 @@
           </p>
           <!-- Create Account Button -->
           <div class="about-buttons">
-            <router-link to="/register" class="btn btn-warning">Create Account</router-link>
+            <router-link to="/register" class="btn btn-warning">Sign Up</router-link>
           </div>
         </div>
       </section>

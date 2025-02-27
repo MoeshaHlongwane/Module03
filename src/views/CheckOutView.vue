@@ -124,6 +124,14 @@ export default {
 };
 </script>
 <style scoped>
+.footer {
+  background: #8B4513;
+  padding: 20px;
+  color:black;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
 .error {
   color: red;
 }

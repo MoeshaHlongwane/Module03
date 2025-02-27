@@ -14,8 +14,8 @@
       <!-- Product Details -->
       <div class="col-md-6">
         <h2 class="product-name">{{ product.product_name }}</h2>
+        <p class="product-description">{{ product.description }}.</p>
         <p class="text-muted product-price">R{{ product.price }}</p>
-        <p class="product-description">{{ product.description }}</p>
 
         <!-- Size Selection -->
         <div class="mb-3">
@@ -53,6 +53,10 @@
       </div>
     </div>
   </div>
+  <!-- Success Popup -->
+<div v-if="showPopup" class="success-popup">
+  <span>👍 Item successfully added to cart</span>
+</div>
 
   <!-- Registration Modal -->
   <div
@@ -90,6 +94,7 @@
       </div>
     </div>
   </div>
+  <br><br>
   <footer class="footer text-center text-white">
       <div class="container">
         <p>&copy; 2025 Thrifted Winter Coats | 123 Winter Lane, Cape Town</p>
@@ -112,6 +117,7 @@ export default {
   },
   data() {
     return {
+      isAdding:false,
       cart: [],
       selectedSize: "", // Selected size
       quantity: 1, // Default quantity
@@ -138,7 +144,9 @@ export default {
         }
       }
     },
+  
     addToCart() {
+      this.isAdding = true;
       const user_id = localStorage.getItem("user_id");
       const productToAdd = {
         user_id: user_id,
@@ -184,13 +192,58 @@ export default {
 </script>
 
 <style scoped>
+
+.btn-add-to-cart {
+  width: 100%;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.btn-add-to-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.success-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.btn-secondary{
+  font-family: 'Poppins', sans-serif;
+}
 .footer {
-  background: black;
+  background: #8B4513;
   padding: 20px;
-  color:black
+  color:black;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .footer p {
   color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
 }
 .social-links a {
   color: var(--text-light);
@@ -204,34 +257,37 @@ export default {
 }
 
 .product-image {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 7px 40px rgba(10, 10, 10, 0.1);
   border-radius: 8px;
   margin-bottom: 20px;
-  height: 450px;
-  width: 550px;
+  height: 400px;
+  width: 400px;
 }
 
 .product-name {
   font-size: 2em;
   font-weight: bold;
   color: #333;
+  font-family: 'Poppins', sans-serif;
 }
 
 .product-price {
-  font-size: 1.25em;
-  color: #27ae60;
-  margin-bottom: 20px;
+  font-size: 30px ;
+  /* margin-bottom: 20px; */
+  font-family: 'Poppins', sans-serif;
 }
 
 .product-description {
   color: #777;
-  font-size: 1em;
-  margin-bottom: 30px;
+  font-size: 20px;
+  /* margin-bottom: 30px; */
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-label {
   font-size: 1.1em;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-select, .form-control {
@@ -241,6 +297,7 @@ export default {
   border: 1px solid #ddd;
   margin-bottom: 15px;
   width: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
 .text-danger {
@@ -259,7 +316,7 @@ export default {
 }
 
 .btn-primary {
-  background-color: #3498db;
+  background-color: #8B4513;
   border-color: #3498db;
   padding: 10px 20px;
   font-size: 1.1em;
@@ -269,11 +326,14 @@ export default {
 .btn-primary:hover {
   background-color: #2980b9;
   border-color: #2980b9;
+  transform: unset;
 }
 
 .btn-add-to-cart {
   width: 100%;
   margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  
 }
 
 .modal-dialog {

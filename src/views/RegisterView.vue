@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h1>Register</h1>
+    <h1>Sign Up</h1>
     <form @submit.prevent="handleRegister">
       <div class="mb-3">
         <label for="fullname" class="form-label">Full Name</label>

@@ -111,9 +111,12 @@ export default {
 </script>
 <style scoped>
 .footer {
-  background: black;
+  background: #8B4513;
   padding: 20px;
-  color:black
+  color:black;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .footer p {
   color: var(--text-light);

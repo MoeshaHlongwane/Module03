@@ -183,10 +183,11 @@ export default {
     transition: transform 0.3s;
 }
 .journey-video {
-  width: 550px;
+  width: 350px;
   height: 350px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   object-fit: cover;
+  display: flex;
 }
 
 .journey-text h2 {
@@ -305,9 +306,12 @@ p {
 
 /* Footer */
 .footer {
-  background: black;
+  background: #8B4513;
   padding: 20px;
-  color:black
+  color:black;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .footer p {
   color: var(--text-light);

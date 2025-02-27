@@ -1,5 +1,10 @@
 <template>
+  <br>
   <div v-if="cartItems.length > 0" class="cart-container">
+     <!-- Back to Products Button -->
+   <button class="btn btn-secondary mb-4" @click="goBackToProducts">
+      <i class="fas fa-arrow-left me-2"></i> Back to Products
+    </button>
     <div class="cart-header">
       <div class="user-name">Hello, Guest!</div>
       <div class="cart-summary">
@@ -37,6 +42,7 @@
   <div v-else class="empty-cart">
     <p>Your cart is empty.</p>
   </div>
+  <br><br>
   <footer class="footer text-center text-white">
       <div class="container">
         <p>&copy; 2025 Thrifted Winter Coats | 123 Winter Lane, Cape Town</p>
@@ -60,6 +66,9 @@ export default {
     },
   },
   methods: {
+    goBackToProducts() {
+      this.$router.push("/products");
+  },
     async removeFromCart(cart_id) {
       await this.$store.dispatch("removeFromCart", cart_id);
       this.$store.dispatch("fetchCartTotal");
@@ -104,7 +113,7 @@ export default {
   background-color: #f9f9f9;
   padding: 30px;
   border-radius: 12px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -114,10 +123,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2c3e50;
+  background-color:rgb(115, 105, 105);
   color: #fff;
   padding: 25px;
-  border-radius: 10px;
   margin-bottom: 20px;
 }
 
@@ -146,7 +154,7 @@ export default {
   background-color: #fff;
   margin-bottom: 20px;
   padding: 20px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -155,12 +163,17 @@ export default {
   flex: 1;
 }
 .footer {
-  background: black;
+  background: #8B4513;
   padding: 20px;
-  color:black
+  color:black;
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .footer p {
   color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
 }
 .social-links a {
   color: var(--text-light);
@@ -172,7 +185,6 @@ export default {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
   margin-right: 20px;
 }
 
@@ -219,7 +231,6 @@ export default {
   padding: 12px 18px;
   font-size: 16px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s, opacity 0.2s;
 }
@@ -256,7 +267,6 @@ export default {
   background-color: #3498db;
   color: white;
   font-size: 18px;
-  border-radius: 8px;
   text-decoration: none;
   text-align: center;
 }
