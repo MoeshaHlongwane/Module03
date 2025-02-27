@@ -23,7 +23,6 @@ app.use(express.json())//to allow data to be added to the Json()file
 
 
 app.use("/api/checkout", ordersRouter)
-
 app.use("/order_items", orderItemRouter)
 app.use("/payments", paymentsRouter)
 app.use("/api/auth", authRouter);

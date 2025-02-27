@@ -3,7 +3,8 @@ import {
   getSingleProduct,
   insertProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  adminUpdateProduct
 } from "../model/productsModel.js";
 
 const getAllProductsCon = async (req, res) => {
@@ -52,4 +53,26 @@ const deleteProductCon = async (req, res) => {
   }
 };
 
-export { getAllProductsCon, getSingleProductCon, insertProductCon, updateProductCon, deleteProductCon };
+//update Productdetails For Admin 
+// Update product details (Price, Stock, Image, Description)
+const adminUpdateProductCon = async (req, res) => {
+  const { product_id, price, stock, image_Url, description } = req.body;
+
+  if (!product_id) {
+      return res.status(400).json({ error: "Product ID is required" });
+  }
+
+  try {
+      const updatedProduct = await adminUpdateProduct(product_id, price, stock, image_Url, description);
+
+      if (updatedProduct) {
+          res.status(200).json({ message: "Product updated successfully" });
+      } else {
+          res.status(404).json({ error: "Product not found" });
+      }
+  } catch (error) {
+      res.status(500).json({ error: "Failed to update product" });
+  }
+};
+
+export { adminUpdateProductCon ,getAllProductsCon, getSingleProductCon, insertProductCon, updateProductCon, deleteProductCon };

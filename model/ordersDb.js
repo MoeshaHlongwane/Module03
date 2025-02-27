@@ -53,4 +53,33 @@ const getUserCheckoutDetails = async (user_id) => {
     throw error;
   }
 };
+
 export { createOrder, getUserCheckoutDetails };
+
+//Admin Controller 
+// Get all orders
+export const adminGetOrders = async () => {
+  try {
+      const [orders] = await pool.query("SELECT * FROM orders");
+      return orders;
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+};
+
+// Update order tracking details
+export const AdminUpdateOrderTracking = async (orderId, trackingNumber, carrier, status) => {
+  try {
+    const query = `
+      UPDATE orders 
+      SET tracking_number = ?, carrier = ?, status = ? 
+      WHERE order_id = ?;
+    `;
+    const [result] = await pool.query(query, [trackingNumber, carrier, status, orderId]);
+    return result.affectedRows > 0;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

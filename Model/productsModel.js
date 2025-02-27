@@ -88,4 +88,20 @@ const deleteProduct = async (product_id) => {
   return "Product successfully deleted";
 };
 
-export { getAllProducts, getSingleProduct, insertProduct, updateProduct, deleteProduct };
+//Admin updating Product 
+const adminUpdateProduct = async (product_id, price, stock, image_url, description) => {
+  try {
+      const query = `
+          UPDATE products 
+          SET price = ?, stock = ?, image_url = ?, description = ? 
+          WHERE product_id = ?;
+      `;
+      const [result] = await pool.query(query, [price, stock, image_url, description, product_id]);
+      return result.affectedRows > 0;
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+};
+
+export { adminUpdateProduct ,getAllProducts, getSingleProduct, insertProduct, updateProduct, deleteProduct };
